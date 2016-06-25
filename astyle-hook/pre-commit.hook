@@ -25,6 +25,7 @@ for FILE in $FILES; do
     if [ $r != 0 ] ; then
         echo "[!] $FILE does not follow the consistent coding style." >&2
         astyle --suffix=none $FILE
+        git add $FILE
     fi
 done
 
