@@ -2,30 +2,12 @@
 
 cd `git rev-parse --show-toplevel`
 
-ASTYLE=$(which astyle)
-if [ $? -ne 0 ]; then
-    echo "[!] astyle not installed. Unable to check source file format policy." >&2
-    exit 1
-fi
+FILES=`git diff --cached --name-only --diff-filter=ACMR`
+TIMESTAMP=$( date +"%Y-%m-%d %H:%M" )
 
-DIFF=$(which colordiff)
-if [ $? -ne 0 ]; then
-    DIFF=diff
-fi
-
-FILES=`git diff --cached --name-only --diff-filter=ACMR | grep -E "\.(c|cpp|h)$"`
 for FILE in $FILES; do
-    nf=`git checkout-index --temp $FILE | cut -f 1`
-    newfile=`mktemp /tmp/${nf}.XXXXXX` || exit 1
-    $ASTYLE < $nf > $newfile 2>> /dev/null
-    $DIFF -u -p -B  "${nf}" "${newfile}"
-    r=$?
-    rm "${newfile}"
-    rm "${nf}"
-    if [ $r != 0 ] ; then
-        astyle --suffix=none $FILE
-        git add $FILE
-    fi
+    sed -i "1,20 s/\(.*\(Last\)\?\s*\([Cc]hanged\?\|[Mm]odified\|[Uu]pdated\?\)\s*:\s*\)\([0-9]*-[0-9]*-[0-9]* [0-9]*:[0-9]*\)/\1$TIMESTAMP/g" $FILE
+    git add $FILE
 done
 
 exit 0
