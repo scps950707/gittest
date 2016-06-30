@@ -2,9 +2,12 @@
  * Author:         scps950707
  * Email:          scps950707@gmail.com
  * Created:        2016-06-30 21:52
- * Last Modified:  2016-06-30 22:39
+ * Last Modified:  2016-06-30 23:27
  * Filename:       test.cpp
  */
+
+#include<iostream>
+using namespace std;
 
 int main( void )
 {
