@@ -1,4 +1,5 @@
 - [X] [airblade/vim-gitgutter](https://github.com/airblade/vim-gitgutter)
+oasdasdasdasd
 - [X] [bling/vim-airline](https://github.com/bling/vim-airline)
 - [X] [bronson/vim-trailing-whitespace](https://github.com/bronson/vim-trailing-whitespace)
 - [ ] [chusiang/vimcdoc-tw](https://github.com/chusiang/vimcdoc-tw)
